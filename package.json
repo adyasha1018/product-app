@@ -1,0 +1,25 @@
+{
+  "devDependencies": {
+    "bower": "1.7.9",
+    "del": "2.2.1",
+    "grunt": "1.0.1",
+    "grunt-cli": "1.2.0",
+    "grunt-concurrent": "2.3.0",
+    "grunt-contrib-connect": "1.0.2",
+    "grunt-contrib-copy": "1.0.0",
+    "grunt-contrib-cssmin": "1.0.1",
+    "grunt-contrib-uglify": "1.0.1",
+    "grunt-html2js": "^0.3.6",
+    "grunt-injector": "1.0.1",
+    "grunt-karma": "2.0.0",
+    "grunt-processhtml": "0.4.0",
+    "grunt-replace": "1.0.1",
+    "grunt-ts": "5.5.1",
+    "load-grunt-tasks": "3.5.0",
+    "requirejs": "2.2.0",
+    "run-sequence": "1.2.2"
+  },
+  "dependencies": {
+    "ng-file-upload": "^12.2.13"
+  }
+}

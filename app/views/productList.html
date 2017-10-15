@@ -1,0 +1,42 @@
+<form name="productListForm" novalidate>
+    <div class="container">
+        <h1> Welcome to Product App </h1>
+        <h5>Select one to see the details of respective product. </h5>
+        <div class="row">
+            <button type="button" class="pull-right padding5" ng-click="productListVM.addProduct()">   Add Product              
+            </button>
+        </div>
+        <div ng-if="showAddForm">
+            <div data-ng-include="'views/addProduct.html'" data-ng-controller="ProductAddController as addProductVM"> </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Image</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody ng-repeat="product in productListVM.productList">
+                    <tr>
+                        <td><img ng-src="{{product.image}}" class="product-image"></td>
+                        <td> {{product.name}} </td>
+                        <td> {{product.description}} </td>
+                        <td>
+                            <button type="button" ng-click="productListVM.viewDetails(product)">
+                            <i class="fa fa-eye"></i></button>
+                            <button type="button" ng-click="productListVM.editDetails(product,$index)">
+                            <i class="fa fa-pencil"></i></button>
+                            <button type="button" ng-click="productListVM.upvote(product)">
+                            <i class="fa fa-plus"></i></button>
+                            <button type="button" ng-click="productListVM.downvote(product)">
+                            <i class="fa fa-minus"></i></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</form>

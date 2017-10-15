@@ -1,0 +1,43 @@
+<div class="row add">
+    <form  name="addProductForm">
+        <div class="row form-group">
+            <div class="col-md-3 form-group">
+                <label for="" class="blocklabel">Name</label>
+                <label for="" class="input">
+                    <input type="text" ng-model="addProductVM.name"
+                    placeholder="enter name" name="name" ng-maxlength="20" required> 
+                 </label>
+                <span class="alert alert-danger" ng-if="addProductForm.name.$error.maxlength">Maximum 20 characters</span>
+            </div>
+            <div class="col-md-3 form-group">
+                <label for="" class="blocklabel">Description</label>
+                <label for="" class="input">
+                    <input type="text" placeholder="enter description"
+                     ng-model="addProductVM.description" name="description" ng-maxlength="50" required> 
+                 </label>
+                <span class="alert alert-danger" ng-if="addProductForm.description.$error.maxlength">Maximum 520 characters</span>
+            </div>
+            
+            <div class="col-md-3 form-group">
+                <label for="" class="blocklabel">Image</label>
+                <!--below commented code will work if backend service is integrated-->
+                <!--<input type="file" ngf-select="addProductVM.upload($file)" ng-model="file" name="file"></input>-->
+                <input type="file" ng-model="image" name="image"></input>
+                <img ng-if="addProductVM.image" ng-src="{{addProductVM.image}}" class="product-image">
+            </div>
+            <div class="col-md-3 form-group">
+                <div class="col-md-6 form-group" ng-if="!$parent.$parent.editedItem">
+                    <button type="button" ng-disabled="addProductForm.$invalid" ng-click="addProductVM.saveProductToList()">Save</button>
+                </div>
+                <div class="col-md-6 form-group"  ng-if="$parent.$parent.editedItem">
+                    <button type="button" ng-disabled="addProductForm.$invalid" ng-click="addProductVM.updateProductToList()">Update</button>
+                </div>
+                <div class="col-md-6 form-group">
+                    <button type="button"  ng-click="addProductVM.cancel()">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+
+</div>

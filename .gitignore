@@ -1,0 +1,21 @@
+ *.class
+*.log
+*.zip
+*.gz
+*.idea
+
+
+
+.tscache/
+node_modules/
+bower_components/
+!**/*.sln
+*/*.sln.
+**/*.suo
+*/*.csproj.
+!**/*.csproj
+**/*.config
+*/*.config.
+**/obj
+**/bin
+**/*.tmp.txt

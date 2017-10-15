@@ -1,0 +1,13 @@
+.product-image{
+    height: 40px;
+    width:50px;
+}
+.padding5{
+    padding: 5px 5px 5px 5px !important;
+}
+.add{
+    width: 1000px;
+    border: 1px solid green;
+    padding: 5px;
+    margin: 5px;
+}
