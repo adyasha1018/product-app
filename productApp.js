@@ -57,9 +57,12 @@ var Data = (function () {
     function Data() {
     }
     Data.ProductList = [
-        { "id": 1, "name": "Lifebuoy", "image": "images/lifebuoy.png", "description": "Lifebuoy soap" },
-        { "id": 2, "name": "Dettol", "image": "images/dettol.jpg", "description": "Dettol soap" },
-        { "id": 3, "name": "Santoor", "image": "images/santoor.jpeg", "description": "Santoor soap" }
+        { "id": 1, "name": "Lifebuoy", "image": "images/lifebuoy.png", "description": "Lifebuoy soap",
+            "up": 0, "down": 0, "bar": "" },
+        { "id": 2, "name": "Dettol", "image": "images/dettol.jpg", "description": "Dettol soap",
+            "up": 0, "down": 0, "bar": "" },
+        { "id": 3, "name": "Santoor", "image": "images/santoor.jpeg", "description": "Santoor soap",
+            "up": 0, "down": 0, "bar": "" }
     ];
     return Data;
 }());
@@ -75,6 +78,8 @@ var productApp;
                     vm.viewDetails = showDetailData;
                     vm.addProduct = addProductClicked;
                     vm.editDetails = editDetails;
+                    vm.upvote = upvoteClicked;
+                    vm.downvote = downvoteClicked;
                 }
                 init();
                 function loadProductLists() {
@@ -93,6 +98,42 @@ var productApp;
                     $scope.showAddForm = true;
                     $scope.editedItem = product;
                     $scope.index = index;
+                }
+                function upvoteClicked(product, index) {
+                    var pr = Data.ProductList.filter(function (prd) {
+                        return prd.id === product.id;
+                    })[0];
+                    pr.up = pr.up + 1;
+                    localStorage.setItem("list", JSON.stringify(Data.ProductList));
+                    vm.productList = JSON.parse(localStorage.getItem("list"));
+                    relation(pr);
+                }
+                function downvoteClicked(product, index) {
+                    var pr = Data.ProductList.filter(function (prd) {
+                        return prd.id === product.id;
+                    })[0];
+                    pr.down = pr.down - 1;
+                    localStorage.setItem("list", JSON.stringify(Data.ProductList));
+                    vm.productList = JSON.parse(localStorage.getItem("list"));
+                    relation(pr);
+                }
+                function relation(product) {
+                    var total = product.up + (-1 * product.down);
+                    var percentage = (product.up / total) * 100;
+                    if (percentage >= 87.5) {
+                        product.bar = "####";
+                    }
+                    else if (percentage < 87.5 && percentage >= 62.5) {
+                        product.bar = "###";
+                    }
+                    else if (percentage < 62.5 && percentage >= 37.5) {
+                        product.bar = "##";
+                    }
+                    else {
+                        product.bar = "#";
+                    }
+                    localStorage.setItem("list", JSON.stringify(Data.ProductList));
+                    vm.productList = JSON.parse(localStorage.getItem("list"));
                 }
             }
             ProductListController.$inject = ["$state", "$scope"];
@@ -134,7 +175,10 @@ var productApp;
                         id: Data.ProductList.length + 1,
                         name: vm.name,
                         description: vm.description,
-                        image: "images/dettol.jpg"
+                        image: "images/dettol.jpg",
+                        up: 0,
+                        down: 0,
+                        bar: ""
                     };
                     Data.ProductList.push(entityToPost);
                     reset();
@@ -153,7 +197,10 @@ var productApp;
                         id: $scope.$parent.$parent.editedItem.id,
                         name: vm.name,
                         description: vm.description,
-                        image: vm.image
+                        image: vm.image,
+                        up: 0,
+                        down: 0,
+                        bar: ""
                     };
                     Data.ProductList.push(entityToUpdate);
                     reset();

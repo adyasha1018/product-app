@@ -23,16 +23,17 @@
                     <tr>
                         <td><img ng-src="{{product.image}}" class="product-image"></td>
                         <td> {{product.name}} </td>
-                        <td> {{product.description}} </td>
+                        <td> {{product.description}}</td>
                         <td>
                             <button type="button" ng-click="productListVM.viewDetails(product)">
                             <i class="fa fa-eye"></i></button>
                             <button type="button" ng-click="productListVM.editDetails(product,$index)">
                             <i class="fa fa-pencil"></i></button>
-                            <button type="button" ng-click="productListVM.upvote(product)">
+                            <button type="button" ng-click="productListVM.upvote(product,$index)">
                             <i class="fa fa-plus"></i></button>
-                            <button type="button" ng-click="productListVM.downvote(product)">
+                            <button type="button" ng-click="productListVM.downvote(product,$index)">
                             <i class="fa fa-minus"></i></button>
+                            [{{product.bar}}]
                         </td>
                     </tr>
                 </tbody>

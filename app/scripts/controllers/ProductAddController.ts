@@ -35,7 +35,10 @@ module productApp.Controllers {
                     id: Data.ProductList.length + 1,
                     name: vm.name,
                     description: vm.description,
-                    image: "images/dettol.jpg"
+                    image: "images/dettol.jpg",
+                    up:0,
+                    down:0,
+                    bar : ""
                 }
 
                 Data.ProductList.push(entityToPost);
@@ -55,7 +58,10 @@ module productApp.Controllers {
                     id: $scope.$parent.$parent.editedItem.id,
                     name: vm.name,
                     description: vm.description,
-                    image: vm.image
+                    image: vm.image,
+                    up:0,
+                    down:0,
+                    bar : ""
                 }
                 Data.ProductList.push(entityToUpdate);
                 reset();

@@ -22,12 +22,17 @@ declare class Data {
         "name": string;
         "image": string;
         "description": string;
+        "up": number;
+        "down": number;
+        "bar": string;
     }[];
 }
 declare module productApp.Controllers {
     class ProductListController {
         productList: Array<any>;
         viewDetails: (product: any) => void;
+        upvote: (product: any, index: any) => void;
+        downvote: (product: any, index: any) => void;
         editDetails: (product: any, index: any) => void;
         addProduct: () => void;
         showAddForm: boolean;
